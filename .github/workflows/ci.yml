@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: vgc
+          POSTGRES_PASSWORD: vgc
+          POSTGRES_DB: vgc_test
+        ports: ["55432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U vgc -d vgc_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      APP_ENV: test
+      APP_URL: http://127.0.0.1:3000
+      DATABASE_URL: postgresql://vgc:vgc@127.0.0.1:55432/vgc_test
+      SESSION_SECRET: test-session-secret-at-least-32-characters
+      EMAIL_DRIVER: file
+      REPLAY_PROVIDER_MODE: fixtures
+      LOG_LEVEL: warn
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.20.0
+          cache: npm
+      - run: npm ci
+      - run: npm run db:migrate
+      - run: npm run db:seed
+      - run: npm run check
+      - run: npm run test:integration
+      - run: npm run test:migrations
+      - run: npm run build

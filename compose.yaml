@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: vgc
+      POSTGRES_PASSWORD: vgc
+      POSTGRES_DB: vgc_dev
+    ports:
+      - "127.0.0.1:55432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vgc -d vgc_dev"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - vgc-postgres:/var/lib/postgresql/data
+
+volumes:
+  vgc-postgres:

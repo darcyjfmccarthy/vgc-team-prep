@@ -1,0 +1,7 @@
+.next
+.local
+node_modules
+coverage
+playwright-report
+package-lock.json
+
