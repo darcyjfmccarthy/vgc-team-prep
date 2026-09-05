@@ -359,6 +359,38 @@ dd {
   color: var(--text);
   font-variant-numeric: tabular-nums;
 }
+.ev-stat-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.nature-marker {
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 0.7;
+}
+.nature-increased .ev-label,
+.nature-increased .ev-label strong {
+  color: #ff858d;
+}
+.nature-decreased .ev-label,
+.nature-decreased .ev-label strong {
+  color: #7eb8ff;
+}
+.nature-increased progress {
+  outline: 1px solid rgb(255 133 141 / 58%);
+  outline-offset: 2px;
+}
+.nature-decreased progress {
+  outline: 1px dashed rgb(126 184 255 / 58%);
+  outline-offset: 2px;
+}
+.ev-stat.nature-increased {
+  --stat-color: #ff858d;
+}
+.ev-stat.nature-decreased {
+  --stat-color: #7eb8ff;
+}
 .ev-stat progress {
   display: block;
   width: 100%;

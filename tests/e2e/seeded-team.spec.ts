@@ -30,6 +30,8 @@ test("seeded user can view the visual Pokémon team", async ({ page }) => {
   ).toContainText("Ice");
   await expect(page.getByText("✦ Shiny", { exact: true })).toHaveCount(1);
   await expect(page.getByLabel("HP: 25 of 32")).toBeVisible();
+  await expect(page.getByLabel("Timid nature increases Spe")).toBeVisible();
+  await expect(page.getByLabel("Timid nature decreases Atk")).toBeVisible();
   await expect(page.getByText("Sprites provided by")).toBeVisible();
 });
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { ItemIcon, PokemonArt } from "@/components/pokemon-art";
+import { natureEffectFor } from "@/lib/nature-effects";
 import { currentUserId } from "@/modules/auth/sessions";
 import { getTeamDetail } from "@/modules/teams/service";
 
@@ -54,6 +55,7 @@ export default async function TeamPage({
         {team.slots.map((slot) => {
           const displayName = slot.form_name ?? slot.species_name;
           const imageSlug = slot.form_slug ?? slot.species_slug;
+          const natureEffect = natureEffectFor(slot.nature_slug);
 
           return (
             <article key={slot.id} className="set-card">
@@ -101,9 +103,38 @@ export default async function TeamPage({
                 <h3 id={`evs-${slot.id}`}>Effort values</h3>
                 <div className="ev-grid">
                   {evLabels.map(([key, label]) => (
-                    <div className={`ev-stat ev-${key}`} key={key}>
+                    <div
+                      className={`ev-stat ev-${key}${
+                        natureEffect?.increased === key
+                          ? " nature-increased"
+                          : natureEffect?.decreased === key
+                            ? " nature-decreased"
+                            : ""
+                      }`}
+                      key={key}
+                    >
                       <div className="ev-label">
-                        <span>{label}</span>
+                        <span className="ev-stat-name">
+                          {label}
+                          {natureEffect?.increased === key && (
+                            <span
+                              className="nature-marker"
+                              aria-label={`${slot.nature_name} nature increases ${label}`}
+                              title={`${slot.nature_name} nature increases ${label}`}
+                            >
+                              ↑
+                            </span>
+                          )}
+                          {natureEffect?.decreased === key && (
+                            <span
+                              className="nature-marker"
+                              aria-label={`${slot.nature_name} nature decreases ${label}`}
+                              title={`${slot.nature_name} nature decreases ${label}`}
+                            >
+                              ↓
+                            </span>
+                          )}
+                        </span>
                         <strong>{slot[key]}</strong>
                       </div>
                       <progress

@@ -33,6 +33,7 @@ describe("Poképaste team import", () => {
     expect(detail?.ev_max_per_stat).toBe(32);
     expect(detail?.slots[0]?.form_slug).toBe("froslass-mega");
     expect(detail?.slots[0]?.item_slug).toBe("froslassite");
+    expect(detail?.slots[0]?.nature_slug).toBe("timid");
     expect(detail?.slots[0]?.moves[0]).toEqual({
       name: "Blizzard",
       typeName: "Ice",

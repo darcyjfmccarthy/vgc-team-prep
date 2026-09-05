@@ -254,6 +254,7 @@ export async function getTeamDetail(userId: string, teamId: string) {
       "items.canonical_slug as item_slug",
       "items.display_name as item_name",
       "abilities.display_name as ability_name",
+      "natures.canonical_slug as nature_slug",
       "natures.display_name as nature_name",
       "team_slot_evs.hp",
       "team_slot_evs.atk",

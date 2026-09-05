@@ -1,3 +1,7 @@
+Currently, this project is governed by @REQUIREMENTS.md. After every change, put a ✅ after any requirements that are newly met. Do NOT add explanations - either requirements are met in full, or they are not.
+
+More detailed documentation of the full vision for the app lives in @docs/ and all plans should reference these.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know

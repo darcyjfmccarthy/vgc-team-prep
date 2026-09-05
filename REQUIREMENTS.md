@@ -8,9 +8,9 @@ Priority notation:
 
 ## FR-1. Accounts and identity
 
-- **FR-1.1 — P0:** A user shall be able to register, log in, log out, and reset their password.
-- **FR-1.2 — P0:** User data shall be associated with an account and accessible across devices.
-- **FR-1.3 — P0:** Passwords shall never be stored in plaintext and shall be processed according to the controls in NFR-4.
+- **FR-1.1 — P0:** A user shall be able to register, log in, log out, and reset their password. ✅
+- **FR-1.2 — P0:** User data shall be associated with an account and accessible across devices. ✅
+- **FR-1.3 — P0:** Passwords shall never be stored in plaintext and shall be processed according to the controls in NFR-4. ✅
 - **FR-1.4 — P0:** A user shall be able to provide the relevant Pokémon Showdown username when importing replays. A Showdown username is an unverified replay-ingestion parameter, not an identity claimed or reserved by an application account.
 - **FR-1.5 — P0:** The user shall be able to select which player in a replay represents them when this cannot be inferred reliably.
 - **FR-1.6 — P1:** Support third-party authentication, such as Google.
@@ -23,9 +23,9 @@ Priority notation:
   - Importing a Poképaste URL.
   - Entering or editing sets manually.
 - **FR-2.2 — P0:** A team shall store format or ruleset, title, description, tags, creation date, and status such as active or testing.
-- **FR-2.3 — P0:** Each Pokémon set shall support species, form, nickname, gender where relevant, level, item, ability, nature, moves, EVs, and any Pokémon Champions mechanics relevant to the set, including Mega Evolution where applicable. IVs are out of scope.
-- **FR-2.4 — P0:** Import validation shall report unsupported species, illegal or malformed values, incomplete sets, and inaccessible pastes.
-- **FR-2.5 — P0:** The system shall distinguish between:
+- **FR-2.3 — P0:** Each Pokémon set shall support species, form, nickname, gender where relevant, level, item, ability, nature, moves, EVs, and any Pokémon Champions mechanics relevant to the set, including Mega Evolution where applicable. IVs are out of scope. ✅
+- **FR-2.4 — P0:** Import validation shall report unsupported species, illegal or malformed values, incomplete sets, and inaccessible pastes. ✅
+- **FR-2.5 — P0:** The system shall distinguish between: ✅
   - A persistent **team identity**, such as “Sydney team.”
   - Immutable **team versions**, such as “v7 before changing Flutter Mane's bulk.”
 - **FR-2.6 — P0:** Editing a competitively meaningful property shall create, or explicitly update, a team version.
@@ -200,7 +200,7 @@ A matchup represents a relationship between one of the user's teams and either a
 - **FR-14.2 — P0:** Replay parser, background job, and integration failures shall be logged and observable using the controls in NFR-8, without exposing unnecessary private content.
 - **FR-14.3 — P1:** Administrators shall be able to manage supported formats, rulesets, and source adapters.
 - **FR-14.4 — P1:** Feature flags shall permit gradual rollout and rollback of new capabilities.
-- **FR-14.5 — P1:** Background jobs shall support retry, deduplication, and dead-letter handling.
+- **FR-14.5 — P1:** Background jobs shall support retry, deduplication, and dead-letter handling. ✅
 
 ## FR-15. Advertising and cost recovery
 
@@ -249,9 +249,9 @@ Initial targets for normal operating load:
 ## NFR-4. Security
 
 - All traffic must use TLS.
-- Passwords must be stored using a modern, adaptive, salted password hash; neither plaintext nor reversibly encrypted passwords may be retained.
-- Sessions and tokens must expire, rotate where appropriate, and support revocation.
-- Authorization must be checked server-side for every private resource.
+- Passwords must be stored using a modern, adaptive, salted password hash; neither plaintext nor reversibly encrypted passwords may be retained. ✅
+- Sessions and tokens must expire, rotate where appropriate, and support revocation. ✅
+- Authorization must be checked server-side for every private resource. ✅
 - Secrets must be stored in an AWS secrets-management facility, not source code or client bundles.
 - Rate limiting and abuse controls must cover authentication, replay import, external refresh, and future AI endpoints.
 - Dependencies and container images must receive automated vulnerability scanning.
@@ -272,21 +272,21 @@ Initial targets for normal operating load:
 ## NFR-6. Extensibility
 
 - Replay parsers, calculation engines, tournament sources, authentication methods, advertising providers, and AI providers should be isolated behind defined interfaces.
-- Core Pokémon entities must use stable canonical identifiers rather than display names.
+- Core Pokémon entities must use stable canonical identifiers rather than display names. ✅
 - Derived analytics should be separated from source facts.
-- Database schema changes must use versioned, reversible migrations.
+- Database schema changes must use versioned, reversible migrations. ✅
 - Public or internal APIs must be versioned when backward-incompatible changes occur.
 - New analytics should be addable without rewriting replay ingestion.
 - External providers must be replaceable without changing the core domain model.
 
 ## NFR-7. Maintainability and testability
 
-- Core business logic must be testable independently from the web interface.
+- Core business logic must be testable independently from the web interface. ✅
 - Team versioning, replay attribution, best-of-three detection, calculation invalidation, and aggregate statistics require automated unit and integration tests.
 - Replay fixtures should cover common formats and difficult mechanics.
 - Contract tests should detect upstream API or page-shape changes.
-- Code should pass automated formatting, static analysis, tests, and migration checks before deployment.
-- Architectural decisions and external integration assumptions should be documented.
+- Code should pass automated formatting, static analysis, tests, and migration checks before deployment. ✅
+- Architectural decisions and external integration assumptions should be documented. ✅
 
 ## NFR-8. Observability
 
@@ -313,27 +313,27 @@ Reasonable initial AWS targets:
 - Bulk operations must show progress and per-item errors.
 - Potentially destructive actions must require confirmation or offer recovery.
 - Statistical views must show sample sizes and explain non-obvious metrics.
-- The interface should be usable on desktop and mobile, with desktop prioritized for analysis-heavy workflows.
+- The interface should be usable on desktop and mobile, with desktop prioritized for analysis-heavy workflows. ✅
 
 ## NFR-11. Accessibility
 
 - Target WCAG 2.2 AA for core workflows.
-- All interactive controls must be keyboard-accessible.
-- Information must not be conveyed solely through colour.
+- All interactive controls must be keyboard-accessible. ✅
+- Information must not be conveyed solely through colour. ✅
 - Tables and charts must have accessible labels or textual equivalents.
-- Pokémon sprites must be decorative or have appropriate accessible names.
+- Pokémon sprites must be decorative or have appropriate accessible names. ✅
 
 ## NFR-12. Compatibility
 
 - Support current versions of Chrome, Firefox, Safari, and Edge.
-- Use responsive layouts for common desktop, tablet, and phone sizes.
-- Do not require a browser extension for core functionality.
-- Preserve imported source text so future parsers can recover data after format changes.
+- Use responsive layouts for common desktop, tablet, and phone sizes. ✅
+- Do not require a browser extension for core functionality. ✅
+- Preserve imported source text so future parsers can recover data after format changes. ✅
 
 ## NFR-13. Scalability and cost control
 
-- The initial architecture should support a single serious user cheaply while allowing growth without redesigning the core data model.
-- Stateless application components should support horizontal scaling.
+- The initial architecture should support a single serious user cheaply while allowing growth without redesigning the core data model. ✅
+- Stateless application components should support horizontal scaling. ✅
 - Long-running parsing, synchronization, and AI work should run asynchronously.
 - Expensive external, advertising, and AI calls must be cached or rate-limited as appropriate and attributable.
 - AWS budgets and cost alerts must be configured.
