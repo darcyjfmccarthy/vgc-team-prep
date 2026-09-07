@@ -54,7 +54,7 @@ Actions:
 - Create/update/archive/restore a team identity.
 - Validate Showdown text without saving.
 - Fetch and validate a recognized Poképaste URL through the server-side provider client.
-- Create a team version from manual input or validated import.
+- Create a team version from validated Showdown text or Poképaste import.
 - Update or discard only an unsealed/unreferenced draft version.
 - Seal a version and map stable slot identities when it gains a historical reference.
 - P1 export a version as Showdown-compatible text.

@@ -23,7 +23,7 @@ An application account may store one or more unverified Showdown usernames. A Sh
 ### 1. Onboard and import a team
 
 1. The user registers or logs in.
-2. They create a team by Showdown text, Poképaste URL, or manual entry.
+2. They create a team by Showdown text or Poképaste URL.
 3. The application parses into a draft and returns per-field warnings/errors without discarding the original text.
 4. The user corrects recoverable issues and saves.
 5. Saving creates one persistent team identity and its first immutable version.

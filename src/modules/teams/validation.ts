@@ -61,10 +61,13 @@ export function validateParsedTeam(
   catalog: CatalogNames = fixtureCatalogNames,
 ): FieldIssue[] {
   const issues: FieldIssue[] = [...draft.errors];
-  if (draft.slots.length !== 6)
+  const teamSize = catalog.teamSize ?? 6;
+  const evMax = catalog.evMaxPerStat ?? 32;
+  const evTotalRequired = catalog.evTotal ?? 66;
+  if (draft.slots.length !== teamSize)
     issues.push({
       code: "TEAM_SIZE",
-      message: "This ruleset requires exactly six Pokémon.",
+      message: `This ruleset requires exactly ${teamSize} Pokémon.`,
     });
   for (const slot of draft.slots) {
     const evTotal = Object.values(slot.evs).reduce(
@@ -113,16 +116,16 @@ export function validateParsedTeam(
       if (!catalog.moves.has(move))
         issues.push(unknown("move", move, slot.slotNumber));
     for (const [stat, value] of Object.entries(slot.evs))
-      if (!Number.isInteger(value) || value < 0 || value > 32)
+      if (!Number.isInteger(value) || value < 0 || value > evMax)
         issues.push({
           code: "INVALID_EV",
-          message: `${stat} EV must be between 0 and 32.`,
+          message: `${stat} EV must be between 0 and ${evMax}.`,
           slotNumber: slot.slotNumber,
         });
-    if (evTotal !== 66)
+    if (evTotal !== evTotalRequired)
       issues.push({
         code: "EV_TOTAL",
-        message: "This ruleset requires exactly 66 total EVs.",
+        message: `This ruleset requires exactly ${evTotalRequired} total EVs.`,
         slotNumber: slot.slotNumber,
       });
   }

@@ -16,11 +16,11 @@ export default async function HomePage() {
         <p className="eyebrow">Private preparation workspace</p>
         <h1>Your teams</h1>
         <p>
-          Import a Poképaste, keep its source, and review every set before
-          battle analysis begins.
+          Import Showdown text or a Poképaste, keep its source, and review every
+          set before battle analysis begins.
         </p>
         <Link className="button" href="/teams/import">
-          Import a Poképaste
+          Import a team
         </Link>
       </section>
       <section>

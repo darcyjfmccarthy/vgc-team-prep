@@ -1,7 +1,15 @@
 import { v5 as uuidv5 } from "uuid";
 import { db } from "../src/db/client";
 import { hashPassword } from "../src/modules/auth/passwords";
-import { importPokepaste } from "../src/modules/teams/service";
+import {
+  getTeamDetail,
+  importPokepaste,
+  listTeamVersions,
+  saveTeamRevision,
+  setTeamArchived,
+  updateTeamMetadata,
+} from "../src/modules/teams/service";
+import { listNotes, saveNote } from "../src/modules/notes/service";
 import { readFile } from "node:fs/promises";
 
 const namespace = "3f6d4f08-553c-4b9f-9972-dff1caf16bc9";
@@ -178,38 +186,83 @@ async function ensureCatalog(): Promise<void> {
 
 async function main(): Promise<void> {
   await ensureCatalog();
-  const email = "player-one@example.test";
-  let user = await db
-    .selectFrom("users")
-    .selectAll()
-    .where("email_normalized", "=", email)
-    .executeTakeFirst();
-  if (!user) {
-    const id = stable(`user:${email}`);
-    await db
-      .insertInto("users")
-      .values({
-        id,
-        email_normalized: email,
-        password_hash: await hashPassword("correct-horse-battery-staple"),
-        display_name: "Player One",
-        account_state: "active",
-        deleted_at: null,
-      })
-      .execute();
-    user = await db
+  const users = [];
+  for (const [email, displayName] of [
+    ["player-one@example.test", "Player One"],
+    ["player-two@example.test", "Player Two"],
+  ] as const) {
+    let user = await db
       .selectFrom("users")
       .selectAll()
-      .where("id", "=", id)
-      .executeTakeFirstOrThrow();
+      .where("email_normalized", "=", email)
+      .executeTakeFirst();
+    if (!user) {
+      const id = stable(`user:${email}`);
+      await db
+        .insertInto("users")
+        .values({
+          id,
+          email_normalized: email,
+          password_hash: await hashPassword("correct-horse-battery-staple"),
+          display_name: displayName,
+          account_state: "active",
+          deleted_at: null,
+        })
+        .execute();
+      user = await db
+        .selectFrom("users")
+        .selectAll()
+        .where("id", "=", id)
+        .executeTakeFirstOrThrow();
+    }
+    users.push(user);
   }
   const manifest = await readFile("teams.txt", "utf8");
   for (const line of manifest
     .split(/\r?\n/)
     .map((value) => value.trim())
-    .filter((value) => value && !value.startsWith("#")))
-    await importPokepaste(user.id, line);
-  console.log("Seeded player-one@example.test / correct-horse-battery-staple");
+    .filter((value) => value && !value.startsWith("#"))) {
+    const playerOneTeam = await importPokepaste(users[0]!.id, line);
+    const detail = await getTeamDetail(users[0]!.id, playerOneTeam.teamId);
+    if (detail && detail.tags.length === 0)
+      await updateTeamMetadata(users[0]!.id, playerOneTeam.teamId, {
+        title: detail.title,
+        description: "Seeded versioned team",
+        status: "testing",
+        tags: ["seeded", "regulation m-b"],
+        expectedRevision: detail.team_revision,
+      });
+    if (!(await listNotes(users[0]!.id, "team", playerOneTeam.teamId)).length)
+      await saveNote(users[0]!.id, {
+        subjectType: "team",
+        subjectId: playerOneTeam.teamId,
+        markdown: "**Practice focus**\n- Review lead options",
+      });
+    if (
+      (await listTeamVersions(users[0]!.id, playerOneTeam.teamId)).length ===
+        1 &&
+      detail?.source_text
+    )
+      await saveTeamRevision(users[0]!.id, playerOneTeam.teamId, {
+        kind: "showdown_text",
+        value: detail.source_text.replace("Froslassite", "Focus Sash"),
+        mode: "create_version",
+        expectedRevision: detail.version_revision,
+        changeSummary: "Seeded item adjustment",
+      });
+    const playerTwoTeam = await importPokepaste(users[1]!.id, line, {
+      title: "Archived practice team",
+    });
+    const playerTwoDetail = await getTeamDetail(
+      users[1]!.id,
+      playerTwoTeam.teamId,
+    );
+    if (playerTwoDetail?.status !== "archived")
+      await setTeamArchived(users[1]!.id, playerTwoTeam.teamId, true);
+  }
+  console.log(
+    "Seeded player-one@example.test and player-two@example.test / correct-horse-battery-staple",
+  );
 }
 
 main().finally(() => db.destroy());

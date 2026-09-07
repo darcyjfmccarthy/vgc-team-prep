@@ -18,17 +18,16 @@ Priority notation:
 
 ## FR-2. Team library and versioning
 
-- **FR-2.1 — P0:** Users shall be able to create a team by:
+- **FR-2.1 — P0:** Users shall be able to create a team by: ✅
   - Pasting Pokémon Showdown export text.
   - Importing a Poképaste URL.
-  - Entering or editing sets manually.
-- **FR-2.2 — P0:** A team shall store format or ruleset, title, description, tags, creation date, and status such as active or testing.
+- **FR-2.2 — P0:** A team shall store format or ruleset, title, description, tags, creation date, and status such as active or testing. ✅
 - **FR-2.3 — P0:** Each Pokémon set shall support species, form, nickname, gender where relevant, level, item, ability, nature, moves, EVs, and any Pokémon Champions mechanics relevant to the set, including Mega Evolution where applicable. IVs are out of scope. ✅
 - **FR-2.4 — P0:** Import validation shall report unsupported species, illegal or malformed values, incomplete sets, and inaccessible pastes. ✅
 - **FR-2.5 — P0:** The system shall distinguish between: ✅
   - A persistent **team identity**, such as “Sydney team.”
   - Immutable **team versions**, such as “v7 before changing Flutter Mane's bulk.”
-- **FR-2.6 — P0:** Editing a competitively meaningful property shall create, or explicitly update, a team version.
+- **FR-2.6 — P0:** Editing a competitively meaningful property shall create, or explicitly update, a team version. ✅
 - **FR-2.7 — P0:** Historical replays shall remain associated with the exact team version used in those games.
 - **FR-2.10 — P1:** Users shall be able to organize teams into folders, events, seasons, or preparation projects.
 - **FR-2.11 — P1:** Users shall be able to export a team in Showdown format and generate a shareable Poképaste-compatible representation.

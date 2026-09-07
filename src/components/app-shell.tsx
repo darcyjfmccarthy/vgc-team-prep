@@ -10,7 +10,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </Link>
         <nav>
           <Link href="/teams">Teams</Link>
-          <Link href="/teams/import">Import</Link>
+          <Link href="/teams/import">Import team</Link>
           <Link href="/dev/mailbox">Mailbox</Link>
           <form action={logoutAction}>
             <button className="link-button">Log out</button>

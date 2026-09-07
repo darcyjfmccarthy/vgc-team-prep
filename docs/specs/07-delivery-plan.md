@@ -20,7 +20,7 @@ Delivers FR-1 P0, FR-2 P0, and team notes from FR-11.
 
 - Versioned canonical catalog and launch ruleset.
 - Showdown text parser/validator with raw source retention.
-- Team CRUD, manual editor, small Poképaste client, immutable versions/slot continuity, diffs/sealing.
+- Team CRUD, Showdown text and Poképaste import, immutable versions/slot continuity, diffs/sealing.
 - Team/team-version/slot notes and basic tags/status.
 
 Exit gate: import, edit, version, revisit exact history across devices; invalid/incomplete/inaccessible inputs have actionable results; security/accessibility tests pass.

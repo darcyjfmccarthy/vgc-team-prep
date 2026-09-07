@@ -67,7 +67,9 @@ label {
   gap: 0.4rem;
   font-weight: 650;
 }
-input {
+input,
+textarea,
+select {
   width: 100%;
   padding: 0.65rem 0.75rem;
   border-radius: 0.45rem;
@@ -75,6 +77,107 @@ input {
   background: #101622;
   color: var(--text);
   font: inherit;
+}
+textarea {
+  resize: vertical;
+}
+fieldset {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+}
+.choice-row,
+.button-row,
+.filter-row,
+.version-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.choice-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.choice-row input {
+  width: auto;
+}
+.form-grid,
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.preview-stack,
+.manage-section,
+.note-card {
+  display: grid;
+  gap: 1rem;
+}
+.manage-section {
+  align-content: start;
+  margin-top: 1.5rem;
+}
+.manage-section:last-child {
+  grid-column: 1 / -1;
+}
+.note-card {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+}
+.note-rendered p:first-child,
+.note-rendered p:last-child {
+  margin-block: 0;
+}
+.version-nav,
+.filter-row {
+  margin: 1rem 0;
+}
+.version-link {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  text-decoration: none;
+}
+.version-link.current {
+  border-color: var(--accent);
+  color: var(--text);
+}
+.history-diff {
+  margin-bottom: 1.25rem;
+}
+.source-panel {
+  margin-bottom: 1rem;
+}
+.source-panel pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+}
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.tag-badge,
+.status-badge {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.status-badge {
+  color: var(--text);
+  text-transform: capitalize;
+}
+del {
+  color: #ffacb7;
+}
+ins {
+  color: #93e7b2;
+  text-decoration: none;
 }
 button,
 .button {
@@ -529,6 +632,13 @@ dd {
 @media (max-width: 760px) {
   .set-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .form-grid,
+  .management-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .manage-section:last-child {
+    grid-column: auto;
   }
 }
 @media (max-width: 600px) {

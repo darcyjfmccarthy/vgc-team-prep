@@ -9,8 +9,11 @@ export default async function ImportTeamPage() {
   if (!(await currentUserId())) redirect("/login");
   return (
     <AppShell>
-      <h1>Import a Poképaste</h1>
-      <p>Preview the parsed team before saving it to your private library.</p>
+      <h1>Import a team</h1>
+      <p>
+        Paste Showdown export text or provide a Poképaste URL, then preview the
+        parsed team before saving.
+      </p>
       <TeamImportForm />
     </AppShell>
   );

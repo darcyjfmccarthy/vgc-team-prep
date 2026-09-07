@@ -212,6 +212,35 @@ export interface TeamSlotEvsTable {
   spe: number;
 }
 
+export interface TagsTable {
+  id: string;
+  user_id: string;
+  label: string;
+  label_normalized: string;
+  color: string | null;
+  created_at: Generated<Date>;
+  updated_at: Generated<Date>;
+}
+export interface TagAssignmentsTable {
+  tag_id: string;
+  user_id: string;
+  subject_type: "team";
+  subject_id: string;
+  created_at: Generated<Date>;
+}
+export interface NotesTable {
+  id: string;
+  user_id: string;
+  subject_type: "team" | "team_version" | "slot_identity";
+  subject_id: string;
+  markdown_source: string;
+  sanitized_render_cache: string;
+  created_at: Generated<Date>;
+  updated_at: Generated<Date>;
+  deleted_at: Date | null;
+  revision: number;
+}
+
 export interface Database {
   users: UsersTable;
   sessions: SessionsTable;
@@ -235,6 +264,9 @@ export interface Database {
   team_slots: TeamSlotsTable;
   team_slot_moves: TeamSlotMovesTable;
   team_slot_evs: TeamSlotEvsTable;
+  tags: TagsTable;
+  tag_assignments: TagAssignmentsTable;
+  notes: NotesTable;
 }
 
 export type User = Selectable<UsersTable>;
