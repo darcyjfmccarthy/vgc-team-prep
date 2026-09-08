@@ -1,54 +1,87 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { EmptyState, StatusBadge } from "@/components/prototype-ui";
 import { currentUserId } from "@/modules/auth/sessions";
 import { listTeams } from "@/modules/teams/service";
-import type { TeamStatus } from "@/modules/teams/types";
 
 export const dynamic = "force-dynamic";
-
-export default async function TeamsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ status?: string }>;
-}) {
+export default async function TeamsPage() {
   const userId = await currentUserId();
   if (!userId) redirect("/login");
-  const requested = (await searchParams).status;
-  const status = (["active", "testing", "archived"] as string[]).includes(
-    requested ?? "",
-  )
-    ? (requested as TeamStatus)
-    : undefined;
-  const teams = await listTeams(userId, status);
+  const teams = await listTeams(userId);
   return (
     <AppShell>
-      <div className="title-row">
-        <h1>Teams</h1>
+      <section className="page-heading split-heading">
+        <div>
+          <p className="eyebrow">Team library</p>
+          <h1>Teams</h1>
+          <p className="muted">Versioned identities for every team you test.</p>
+        </div>
         <Link className="button" href="/teams/import">
           Import team
         </Link>
-      </div>
-      <nav className="filter-row" aria-label="Filter teams by status">
-        <Link href="/teams">All</Link>
-        <Link href="/teams?status=active">Active</Link>
-        <Link href="/teams?status=testing">Testing</Link>
-        <Link href="/teams?status=archived">Archived</Link>
-      </nav>
-      <div className="team-list">
-        {teams.map((team) => (
-          <Link key={team.id} className="team-card" href={`/teams/${team.id}`}>
-            <strong>{team.title}</strong>
-            <span>
-              v{team.version_number} · {team.ruleset_name}
-            </span>
-            <span>
-              {team.status}
-              {team.tags.length ? ` · ${team.tags.join(", ")}` : ""}
-            </span>
-          </Link>
-        ))}
-      </div>
+      </section>
+      <form className="filter-bar" aria-label="Team filters">
+        <label>
+          Search
+          <input placeholder="Search teams, tags, or format" disabled />
+        </label>
+        <label>
+          Status
+          <select defaultValue="all">
+            <option value="all">All statuses</option>
+            <option>Active</option>
+            <option>Testing</option>
+            <option>Archived</option>
+          </select>
+        </label>
+        <label>
+          Ruleset
+          <select>
+            <option>All rulesets</option>
+          </select>
+        </label>
+      </form>
+      {teams.length ? (
+        <div className="team-library">
+          {teams.map((team) => (
+            <Link
+              key={team.id}
+              className="team-library-card"
+              href={`/teams/${team.id}`}
+            >
+              <div className="team-card-sprites" aria-hidden="true">
+                <span>●</span>
+                <span>●</span>
+                <span>●</span>
+                <span>●</span>
+                <span>●</span>
+                <span>●</span>
+              </div>
+              <div>
+                <h2>{team.title}</h2>
+                <p>
+                  {team.ruleset_name} · v{team.version_number}
+                </p>
+                <div className="tag-row">
+                  <StatusBadge value={team.status} />
+                  {team.tags.map((tag) => (
+                    <span className="tag-badge" key={tag}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <span className="muted">Updated workspace →</span>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <EmptyState title="No teams yet">
+          Import a Showdown export or Poképaste to create a team workspace.
+        </EmptyState>
+      )}
     </AppShell>
   );
 }

@@ -16,6 +16,7 @@ This directory translates [`REQUIREMENTS.md`](../../REQUIREMENTS.md) into an imp
 | [`08-requirement-traceability.md`](08-requirement-traceability.md)       | Mapping from every source requirement group to its owning specification                                            |
 | [`09-local-development.md`](09-local-development.md)                     | PostgreSQL-only setup, commands, seeds, jobs, provider fixtures, debugging, and safety                             |
 | [`10-p1-data-models.md`](10-p1-data-models.md)                           | Complete logical data model through P1, including relationships, lifecycle rules, indexes, and derived read models |
+| [`11-ux-prototype.md`](11-ux-prototype.md)                               | Authenticated P0 UX prototype, navigation, responsive behavior, and fixture boundary                               |
 | [`../FILE_STRUCTURE.md`](../FILE_STRUCTURE.md)                           | Proposed single-application tree and organization rules                                                            |
 
 ## Status vocabulary

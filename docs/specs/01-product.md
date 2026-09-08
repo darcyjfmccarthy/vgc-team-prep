@@ -90,13 +90,12 @@ Users can attach formatted plain-text notes to defined subjects and reuse canoni
 
 Primary navigation:
 
-- **Home:** recent imports, active teams, calculations needing review, matchup work.
-- **Teams:** team identities, versions, editor, dashboard, games, notes.
-- **Replays:** import batches, games, sets, parser inspection, corrections.
-- **Matchups:** plans, structured choices, evidence, calculations.
-- **Calculations:** calculator and searchable saved library.
-- **Knowledge:** opposing sets and archetypes.
-- **Settings:** account, Showdown names, export/deletion (P1), preferences.
+- **Home:** recent and active team workspaces plus reusable knowledge.
+- **Teams:** team identities, versions, and entry into all team-scoped work.
+- **Knowledge:** globally reusable opposing sets and archetypes.
+- **Profile:** account, Showdown names, export/deletion (P1), and preferences.
+
+Within a selected team, primary workspace tabs are Overview, Roster, Replays, Statistics, Matchups, Calculator, and Notes. Replay imports, games, sets, statistics, matchup plans, and calculations are always presented with a team context; they are not peer-level global destinations. Team metadata, source, version history, and revision controls live in Team settings outside the primary workspace tabs.
 
 Desktop prioritizes dense tables and comparison panels. Mobile preserves all core workflows with stacked views; no hover-only behavior is allowed.
 

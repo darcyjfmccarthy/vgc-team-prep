@@ -168,6 +168,7 @@ export function TeamManagement({
   team,
   subjects,
   notes,
+  includeNotes = true,
 }: {
   team: {
     id: string;
@@ -180,6 +181,7 @@ export function TeamManagement({
   };
   subjects: Array<{ type: NoteView["subjectType"]; id: string; label: string }>;
   notes: NoteView[];
+  includeNotes?: boolean;
 }) {
   const router = useRouter();
   const [title, setTitle] = useState(team.title);
@@ -454,7 +456,7 @@ export function TeamManagement({
           </p>
         )}
       </section>
-      <TeamNotes subjects={subjects} initialNotes={notes} />
+      {includeNotes && <TeamNotes subjects={subjects} initialNotes={notes} />}
     </div>
   );
 }

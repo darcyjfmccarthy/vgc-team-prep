@@ -6,7 +6,10 @@ async function openSeededTeam(page: Page): Promise<void> {
   await page.getByLabel("Email").fill("player-one@example.test");
   await page.getByLabel("Password").fill("correct-horse-battery-staple");
   await page.getByRole("button", { name: "Sign in" }).click();
-  await expect(page.getByRole("heading", { name: "Your teams" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Choose a team. Prepare with context." }),
+  ).toBeVisible();
+  await page.goto("/teams");
   await page.getByRole("link", { name: /DuskLass reg m-b life orb/ }).click();
 }
 
@@ -16,6 +19,29 @@ test("seeded user can view the visual Pokémon team", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "DuskLass reg m-b life orb" }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Preparation at a glance" }),
+  ).toBeVisible();
+  const primaryNavigation = page.getByRole("navigation", {
+    name: "Primary navigation",
+  });
+  await expect(primaryNavigation.getByRole("link")).toHaveCount(4);
+  await expect(
+    primaryNavigation.getByRole("link", { name: "Knowledge" }),
+  ).toBeVisible();
+  await expect(
+    primaryNavigation.getByRole("link", { name: "Replays" }),
+  ).toHaveCount(0);
+  const teamNavigation = page.getByRole("navigation", {
+    name: "Team workspace",
+  });
+  await expect(
+    teamNavigation.getByRole("link", { name: "Statistics" }),
+  ).toBeVisible();
+  await expect(
+    teamNavigation.getByRole("link", { name: "Calculator" }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Roster", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: /Froslass-Mega/ }),
   ).toBeVisible();
@@ -41,6 +67,7 @@ test("team cards stack without horizontal overflow on mobile", async ({
 }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await openSeededTeam(page);
+  await page.getByRole("link", { name: "Roster", exact: true }).click();
 
   await expect(page.locator(".set-card")).toHaveCount(6);
   const hasHorizontalOverflow = await page.evaluate(
@@ -62,7 +89,10 @@ test("user can import Showdown text and manage its lifecycle", async ({
   await page.getByLabel("Email").fill("player-one@example.test");
   await page.getByLabel("Password").fill("correct-horse-battery-staple");
   await page.getByRole("button", { name: "Sign in" }).click();
-  await page.getByRole("link", { name: "Import team" }).first().click();
+  await expect(
+    page.getByRole("heading", { name: "Choose a team. Prepare with context." }),
+  ).toBeVisible();
+  await page.goto("/teams/import");
   await page.getByLabel("Pokémon Showdown export text").fill(source);
   await page.getByRole("button", { name: "Preview team" }).click();
   await expect(page.getByText("Ready to save.")).toBeVisible();
@@ -73,13 +103,18 @@ test("user can import Showdown text and manage its lifecycle", async ({
     page.getByRole("heading", { name: "E2E import team" }),
   ).toBeVisible();
 
+  await page.getByRole("link", { name: "Team settings" }).click();
+
   await page.getByLabel("Description").fill("Managed in the browser");
   await page.getByRole("button", { name: "Save details" }).click();
   await expect(page.getByText("Team details saved.")).toBeVisible();
+  await page.getByRole("link", { name: "Notes" }).click();
   await page.getByLabel("New note").fill("**Lead plan**\n- Protect");
   await page.getByRole("button", { name: "Add note" }).click();
   await page.reload();
   await expect(page.getByText("Lead plan", { exact: true })).toBeVisible();
+
+  await page.getByRole("link", { name: "Team settings" }).click();
 
   await page
     .getByLabel("Updated Showdown text")
@@ -88,7 +123,12 @@ test("user can import Showdown text and manage its lifecycle", async ({
   await expect(page.getByText(/Slot 1 item/)).toBeVisible();
   await page.getByLabel("Change summary").fill("Browser item change");
   await page.getByRole("button", { name: "Save revision" }).click();
-  await expect(page.getByText("Version 2", { exact: false })).toBeVisible();
+  await expect(
+    page
+      .getByRole("combobox", { name: "Version", exact: true })
+      .locator("option:checked"),
+  ).toHaveText(/v2.*latest/);
+  await page.getByRole("link", { name: "Team settings" }).click();
   await expect(page.getByRole("link", { name: "v1" })).toBeVisible();
 
   await page.getByRole("button", { name: "Archive team" }).click();
@@ -104,7 +144,10 @@ test("new user can create a team from a Poképaste URL", async ({ page }) => {
   await page.getByLabel("Email").fill(email);
   await page.getByLabel(/Password/).fill("browser-test-password");
   await page.getByRole("button", { name: "Create account" }).click();
-  await page.getByRole("link", { name: "Import team" }).first().click();
+  await expect(
+    page.getByRole("heading", { name: "Choose a team. Prepare with context." }),
+  ).toBeVisible();
+  await page.goto("/teams/import");
   await page.getByLabel("Poképaste URL", { exact: true }).check();
   await page
     .getByLabel("Poképaste URL", { exact: true })
