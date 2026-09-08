@@ -34,7 +34,7 @@ Feature folders and a few external-provider seams preserve maintainability witho
 ## Decisions required before implementation
 
 1. **Supported launch ruleset:** identify the exact Pokémon Champions format identifiers, mechanics, legal species/forms, and data update process.
-2. **Reference damage engine:** select or license the engine whose output defines correctness, then freeze representative versioned fixtures.
+2. **Reference damage engine:** `@smogon/calc@0.11.0` is selected under MIT for the live slice; freeze authoritative Champions fixtures before full certification.
 3. **Replay formats:** approve the exact Showdown formats that are P0 and provide replay fixtures, including best-of-three URL examples.
 4. **Poképaste integration:** confirm permitted retrieval/export behavior, rate limits, and whether “Poképaste-compatible” means text only or hosted paste creation.
 5. **Canonical game data:** choose the source and license for species, forms, items, moves, abilities, sprites, and localized display names.

@@ -4,7 +4,7 @@
 
 This visual prototype establishes the P0 navigation and screen language before replay, analytics, matchup, and knowledge persistence are implemented. It preserves live team, version, roster, metadata, import, and note behavior. All other domain content is typed fixture data and must not be treated as stored user evidence.
 
-Damage calculation functionality is deliberately excluded. A team-scoped Calculator tab reserves its correct place in the hierarchy, but contains no calculator controls, saved results, or matchup calculation content.
+The team-scoped Calculator tab now provides live, unsaved calculations. It loads the selected team version, prefills an editable attacker from accessible roster buttons, accepts an ad hoc defender and battle state, supports swapped offensive/defensive perspectives, and labels verified, approximate, and unsupported engine results. Saved results, persistence, search, dependencies, and matchup calculation content remain excluded.
 
 ## Navigation
 

@@ -132,7 +132,7 @@ A normalized input fully describes attacker, defender, move, ruleset/mechanics v
 5. Convert engine output to the application result contract without losing raw integer rolls/distribution.
 6. Store the engine/mechanics/catalog versions and assumptions for saved calculations.
 
-KO probability must state the model assumptions, including roll distribution, starting HP, recovery/residual effects, and multi-hit handling. If the reference engine cannot support a scenario accurately, return `unsupported`, not an approximation presented as fact.
+KO probability must state the model assumptions, including roll distribution, starting HP, recovery/residual effects, and multi-hit handling. If the reference engine cannot support a scenario accurately, return `unsupported`, not an approximation presented as fact. During the pre-certification Champions slice, a known Gen 9 fallback may be returned only with `approximate` confidence and an explicit description of the omitted or substituted mechanic.
 
 ### Dependency invalidation
 

@@ -472,6 +472,7 @@ export async function getTeamDetail(
       "team_versions.sealed_at",
       "team_versions.revision as version_revision",
       "rulesets.id as ruleset_id",
+      "rulesets.canonical_slug as ruleset_slug",
       "rulesets.display_name as ruleset_name",
       "rulesets.ev_max_per_stat",
     ])

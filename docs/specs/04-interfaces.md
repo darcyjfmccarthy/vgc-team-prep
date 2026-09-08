@@ -108,7 +108,7 @@ The interactive calculator uses one JSON route because it needs quick repeated e
 
 - `POST /api/v1/damage/evaluate`
 
-It accepts normalized semantic combatant/move/field input and returns the integer damage distribution/range, HP/percentage range, KO result, assumptions/warnings, and engine/catalog/mechanics versions. It does not save unless the user invokes the separate save action. Target p95 is below 150 ms.
+It accepts normalized semantic combatant/move/field input and returns the integer damage distribution/range, HP/percentage range, KO result, assumptions/warnings, confidence (`verified | approximate | unsupported`), and engine/catalog/mechanics versions. Approximate results identify their exact fallback. It does not save unless the user invokes the separate save action. Target p95 is below 150 ms.
 
 Saved-calculation actions cover create/update/delete, recompute, tag/matchup links, and viewing immutable revisions. Search supports team, user slot/species, opponent set/species, matchup, tag, and dependency state.
 

@@ -140,9 +140,9 @@ A matchup represents a relationship between one of the user's teams and either a
   - Follow the latest team version.
   - Are pinned to a historical team version.
   - Use a copied static set.
-- **FR-8.8 — P0:** Results shall include damage range, percentage range, KO probability or guaranteed-NHKO summary, and relevant assumptions.
+- **FR-8.8 — P0:** Results shall include damage range, percentage range, KO probability or guaranteed-NHKO summary, and relevant assumptions. ✅
 - **FR-8.9 — P0:** Users shall be able to specify and save ordinary calculator battle-state inputs and combined scenarios, including doubles modifier, weather, terrain, screens, Helping Hand, critical hit, stat stages, status, Mega form, and other supported field effects.
-- **FR-8.10 — P0:** Both offensive and defensive perspectives shall be supported.
+- **FR-8.10 — P0:** Both offensive and defensive perspectives shall be supported. ✅
 - **FR-8.11 — P0:** Users shall be able to search and filter saved calculations by team, Pokémon, opponent, matchup, tag, and outdated status.
 - **FR-8.12 — P1:** Provide bulk calculation matrices, such as every team member into a target or a threat into every team member.
 - **FR-8.14 — P1:** Identify EV breakpoints required to survive, KO, or outspeed under stated assumptions.

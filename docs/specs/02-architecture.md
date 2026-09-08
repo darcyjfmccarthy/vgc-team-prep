@@ -98,6 +98,8 @@ Keep each provider in a small client file or folder that accepts application val
 - `sendEmail(message)`
 - `calculateDamage(input)` around the selected calculation engine
 
+The initial calculator engine is `@smogon/calc` pinned at `0.11.0`, used only through the server-side application adapter recorded in [`../decisions/0001-damage-calculation-engine.md`](../decisions/0001-damage-calculation-engine.md). Its classes and data shapes do not cross into route or UI contracts.
+
 Tests replace these functions with fakes at the module boundary. Provider response shapes must not be stored as core entities or leak into UI code. Future tournament, advertising, and AI integrations get their own modules only when that priority is being built.
 
 Avoid creating a generic plugin framework. Similar providers may share a small interface once a second real implementation exists.

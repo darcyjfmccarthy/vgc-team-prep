@@ -1104,6 +1104,178 @@ dd {
   text-align: center;
   font-size: 0.75rem;
 }
+.calculator-shell {
+  display: grid;
+  grid-template-columns: 126px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+.calculator-roster {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+.calculator-version {
+  margin: 0.2rem 0 0;
+}
+.calculator-roster-list,
+.calculator-main {
+  display: grid;
+  gap: 0.75rem;
+}
+.calculator-roster-button {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 0.25rem;
+  padding: 0.4rem;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  text-align: center;
+}
+.calculator-roster-button[aria-pressed="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgb(145 167 255 / 20%);
+}
+.calculator-roster-button .pokemon-art,
+.calculator-roster-button .pokemon-sprite {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto;
+}
+.calculator-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.8rem;
+}
+.calculator-toolbar p {
+  margin: 0.2rem 0 0;
+}
+.calculator-notice,
+.calculator-warning,
+.calculator-error {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgb(243 200 106 / 55%);
+  border-radius: 0.55rem;
+  background: rgb(243 200 106 / 8%);
+  color: var(--warning);
+}
+.calculator-error {
+  border-color: rgb(255 172 183 / 55%);
+  background: rgb(255 172 183 / 8%);
+  color: var(--danger);
+}
+.calculator-combatants {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+}
+.calculator-combatant,
+.calculator-battle,
+.calculator-results {
+  display: grid;
+  gap: 1rem;
+}
+.calculator-combatant h3,
+.calculator-battle h3,
+.calculator-results h3 {
+  margin: 0;
+}
+.calculator-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.calculator-fields .field-wide {
+  grid-column: 1 / -1;
+}
+.calculator-stat-fieldset {
+  margin: 0;
+  padding: 0.8rem;
+}
+.calculator-stat-fieldset legend {
+  padding: 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+.calculator-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+.calculator-stat-grid.boosts {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.calculator-stat-grid label {
+  font-size: 0.72rem;
+}
+.calculator-stat-grid input,
+.calculator-stat-grid select {
+  min-width: 0;
+  padding-inline: 0.35rem;
+}
+.calculator-move-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.calculator-move-grid label {
+  font-size: 0.75rem;
+}
+.calculator-toggles {
+  padding-top: 0.25rem;
+}
+.calculation-confidence {
+  padding: 0.25rem 0.55rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+.calculation-confidence.verified {
+  color: var(--success);
+}
+.calculation-confidence.approximate {
+  color: var(--warning);
+}
+.calculation-confidence.unsupported {
+  color: var(--danger);
+}
+.damage-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 850;
+}
+.damage-range span {
+  color: var(--accent);
+}
+.ko-summary {
+  margin: -0.5rem 0 0;
+  color: var(--success);
+  font-weight: 750;
+}
+.calculator-warning ul,
+.calculator-results details ul {
+  margin-bottom: 0;
+}
+.roll-list {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
 @media (max-width: 760px) {
   .app-sidebar {
     display: none;
@@ -1179,6 +1351,23 @@ dd {
   }
   .manage-section:last-child {
     grid-column: auto;
+  }
+  .calculator-shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .calculator-roster {
+    position: static;
+  }
+  .calculator-roster-list {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+  }
+  .calculator-roster-button {
+    flex: 0 0 105px;
+  }
+  .calculator-combatants {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 @media (max-width: 600px) {
@@ -1258,6 +1447,27 @@ dd {
     height: 82px;
   }
   .move-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .calculator-toolbar,
+  .calculator-fields {
+    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .calculator-toolbar {
+    display: grid;
+  }
+  .calculator-toolbar button {
+    width: 100%;
+  }
+  .calculator-fields .field-wide {
+    grid-column: auto;
+  }
+  .calculator-stat-grid,
+  .calculator-stat-grid.boosts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .calculator-move-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }

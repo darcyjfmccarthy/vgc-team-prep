@@ -78,6 +78,87 @@ test("team cards stack without horizontal overflow on mobile", async ({
   expect(hasHorizontalOverflow).toBe(false);
 });
 
+test("team calculator prefills sets and evaluates both perspectives", async ({
+  page,
+}) => {
+  await openSeededTeam(page);
+  await page.getByRole("link", { name: "Calculator" }).click();
+
+  await expect(
+    page.getByRole("heading", { name: "Damage calculator" }),
+  ).toBeVisible();
+  const roster = page.getByRole("complementary", { name: "Team attackers" });
+  await expect(roster.getByRole("button")).toHaveCount(6);
+  await expect(
+    roster.getByRole("button", { name: "Use Froslass-Mega as attacker" }),
+  ).toHaveAttribute("aria-pressed", "true");
+
+  const attacker = page.getByRole("region", { name: "Attacker" });
+  const defender = page.getByRole("region", { name: "Defender" });
+  await expect(attacker.getByLabel("Pokémon or form")).toHaveValue(
+    "Froslass-Mega",
+  );
+  await defender.getByLabel("Pokémon or form").fill("Garchomp");
+  await defender.getByLabel("Move 1").fill("Earthquake");
+
+  const result = page.getByRole("region", { name: "Result" });
+  await expect(result.getByText("approximate", { exact: true })).toBeVisible();
+  await expect(result.locator(".damage-range")).toContainText("HP");
+  await expect(result.getByText(/@smogon\/calc 0\.11\.0/)).toBeAttached();
+
+  await page
+    .getByRole("combobox", { name: "Version", exact: true })
+    .selectOption({ label: "v1" });
+  await expect(page.locator(".calculator-version")).toHaveText("v1");
+  await expect(attacker.getByLabel("Item")).toHaveValue("Froslassite");
+  await defender.getByLabel("Pokémon or form").fill("Garchomp");
+  await defender.getByLabel("Move 1").fill("Earthquake");
+
+  await roster
+    .getByRole("button", { name: "Use Basculegion as attacker" })
+    .click();
+  await expect(attacker.getByLabel("Pokémon or form")).toHaveValue(
+    "Basculegion",
+  );
+  await expect(page.getByLabel("Attacking move")).toHaveValue("Wave Crash");
+  await expect(result.getByText("verified", { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: "Swap sides" }).click();
+  await expect(attacker.getByLabel("Pokémon or form")).toHaveValue("Garchomp");
+  await expect(page.getByLabel("Attacking move")).toHaveValue("Earthquake");
+  await expect(result.locator(".damage-range")).toContainText("HP");
+});
+
+test("calculator roster remains contained on mobile", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await openSeededTeam(page);
+  await page.getByRole("link", { name: "Calculator" }).click();
+  await expect(
+    page
+      .getByRole("complementary", { name: "Team attackers" })
+      .getByRole("button"),
+  ).toHaveCount(6);
+  const hasHorizontalOverflow = await page.evaluate(
+    () =>
+      document.documentElement.scrollWidth >
+      document.documentElement.clientWidth,
+  );
+  expect(hasHorizontalOverflow).toBe(false);
+});
+
+test("calculator evaluation route requires authentication", async ({
+  page,
+}) => {
+  const response = await page.request.post("/api/v1/damage/evaluate", {
+    data: {},
+  });
+  expect(response.status()).toBe(401);
+  await expect(response.json()).resolves.toMatchObject({
+    ok: false,
+    code: "UNAUTHENTICATED",
+  });
+});
+
 test("user can import Showdown text and manage its lifecycle", async ({
   page,
 }) => {
