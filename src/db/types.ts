@@ -242,6 +242,67 @@ export interface NotesTable {
 }
 
 export interface Database {
+  replay_import_batches: {
+    id: string;
+    user_id: string;
+    team_id: string;
+    created_at: Generated<Date>;
+  };
+  replay_import_items: {
+    id: string;
+    batch_id: string;
+    original_url: string;
+    game_id: string | null;
+    status: string;
+    error_detail: string | null;
+  };
+  games: {
+    id: string;
+    user_id: string;
+    team_id: string;
+    team_version_id: string | null;
+    provider_replay_id: string;
+    canonical_url: string;
+    requested_username: string | null;
+    requested_side: import("@/modules/replays/types").Side | null;
+    user_side: import("@/modules/replays/types").Side | null;
+    status: string;
+    error_detail: string | null;
+    parser_run_id: string | null;
+    created_at: Generated<Date>;
+    updated_at: Generated<Date>;
+  };
+  replay_sources: {
+    game_id: string;
+    raw_log: string;
+    checksum: string;
+    content_type: Generated<string>;
+    retrieved_at: Generated<Date>;
+  };
+  parser_runs: {
+    id: string;
+    game_id: string;
+    parser_version: string;
+    catalog_version_id: string | null;
+    output: import("@/modules/replays/types").ParsedReplay;
+    output_checksum: string;
+    created_at: Generated<Date>;
+  };
+  game_corrections: {
+    id: string;
+    game_id: string;
+    user_id: string;
+    user_side: import("@/modules/replays/types").Side;
+    result: import("@/modules/replays/types").Result | null;
+    reason: string;
+    created_at: Generated<Date>;
+  };
+  replay_annotations: {
+    user_id: string;
+    subject_key: string;
+    markdown: string;
+    updated_at: Generated<Date>;
+  };
   users: UsersTable;
   sessions: SessionsTable;
   password_reset_tokens: PasswordResetTokensTable;

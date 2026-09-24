@@ -1,0 +1,214 @@
+|j|☆AI damage calc
+|j|☆killerjc123
+|html|<table width="100%"><tr><td align="left">AI damage calc</td><td align="right">killerjc123</tr><tr><td align="left"><i class="fa fa-circle-o"></i> <i class="fa fa-circle-o"></i> </td><td align="right"><i class="fa fa-circle-o"></i> <i class="fa fa-circle-o"></i> </tr></table>
+|uhtml|bestof|<h2><strong>Game 1</strong> of <a href="/game-bestof3-gen9championsvgc2026regmcbo3-2683340563">a best-of-3</a></h2>
+|t:|1789701284
+|gametype|doubles
+|player|p1|AI damage calc|1|1123
+|player|p2|killerjc123|169|1168
+|gen|9
+|tier|[Gen 9 Champions] VGC 2026 Reg M-C (Bo3)
+|rated|
+|rule|Species Clause: Limit one of each Pokémon
+|rule|Item Clause: Limit 1 of each item
+|clearpoke
+|poke|p1|Gholdengo, L50|
+|poke|p1|Sneasler, L50, F|
+|poke|p1|Raichu, L50, F|
+|poke|p1|Arcanine-Hisui, L50, M|
+|poke|p1|Rillaboom, L50, M|
+|poke|p1|Salamence, L50, F|
+|poke|p2|Salamence, L50, F|
+|poke|p2|Tyranitar, L50, M|
+|poke|p2|Excadrill, L50, M|
+|poke|p2|Sneasler, L50, F|
+|poke|p2|Indeedee, L50, M|
+|poke|p2|Milotic, L50, M|
+|teampreview|4
+|showteam|p1|Gholdengo||LifeOrb|GoodasGold|Protect,MakeItRain,ShadowBall,NastyPlot|Timid|||||50|]Sneasler||GrassySeed|Unburden|CloseCombat,DireClaw,RockTomb,FakeOut|Adamant||F|||50|]Raichu||RaichuniteY|LightningRod|FakeOut,Protect,ZapCannon,FocusBlast|Timid||F|||50|]Arcanine-Hisui||FocusSash|RockHead|FlareBlitz,HeadSmash,ExtremeSpeed,Protect|Jolly||M|||50|]Rillaboom||MiracleSeed|GrassySurge|FakeOut,GrassyGlide,HighHorsepower,Uturn|Adamant||M|||50|]Salamence||Salamencite|Intimidate|HyperVoice,DracoMeteor,Tailwind,Protect|Timid||F|||50|
+|showteam|p2|Salamence||Salamencite|Intimidate|HyperVoice,DracoMeteor,Protect,Flamethrower|Modest||F|||50|]Tyranitar||Tyranitarite|SandStream|Protect,RockSlide,LowKick,KnockOff|Adamant||M|||50|]Excadrill||FocusSash|SandRush|HighHorsepower,RockSlide,Protect,IronHead|Jolly||M|||50|]Sneasler||PsychicSeed|Unburden|CloseCombat,ThroatChop,DireClaw,FakeOut|Jolly||F|||50|]Indeedee||ChoiceScarf|PsychicSurge|Trick,TerrainPulse,ExpandingForce,MysticalFire|Modest||M|||50|]Milotic||Leftovers|Competitive|Scald,LifeDew,IcyWind,Protect|Modest||M|||50|
+|
+|t:|1789701356
+|teamsize|p1|4
+|teamsize|p2|4
+|start
+|switch|p1a: Rillaboom|Rillaboom, L50, M|100/100
+|switch|p1b: Gholdengo|Gholdengo, L50|100/100
+|switch|p2a: Tyranitar|Tyranitar, L50, M|100/100
+|switch|p2b: Excadrill|Excadrill, L50, M|100/100
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1a: Rillaboom
+|-weather|Sandstorm|[from] ability: Sand Stream|[of] p2a: Tyranitar
+|turn|1
+|
+|t:|1789701383
+|switch|p1b: Salamence|Salamence, L50, F|100/100
+|-ability|p1b: Salamence|Intimidate|boost
+|-unboost|p2a: Tyranitar|atk|1
+|-unboost|p2b: Excadrill|atk|1
+|switch|p2a: Indeedee|Indeedee, L50, M|100/100
+|-fieldstart|move: Psychic Terrain|[from] ability: Psychic Surge|[of] p2a: Indeedee
+|move|p2b: Excadrill|High Horsepower|p1b: Salamence
+|-immune|p1b: Salamence
+|move|p1a: Rillaboom|U-turn|p2a: Indeedee
+|-supereffective|p2a: Indeedee|1
+|-damage|p2a: Indeedee|0 fnt
+|faint|p2a: Indeedee
+|
+|t:|1789701390
+|switch|p1a: Sneasler|Sneasler, L50, F|100/100|[from] U-turn
+|
+|-weather|Sandstorm|[upkeep]
+|-damage|p1a: Sneasler|94/100|[from] Sandstorm
+|-damage|p1b: Salamence|94/100|[from] Sandstorm
+|upkeep
+|
+|t:|1789701401
+|switch|p2a: Salamence|Salamence, L50, F|100/100
+|-ability|p2a: Salamence|Intimidate|boost
+|-unboost|p1a: Sneasler|atk|1
+|-unboost|p1b: Salamence|atk|1
+|turn|2
+|
+|t:|1789701410
+|switch|p1b: Rillaboom|Rillaboom, L50, M|100/100
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1b: Rillaboom
+|-enditem|p1a: Sneasler|Grassy Seed
+|-boost|p1a: Sneasler|def|1|[from] item: Grassy Seed
+|detailschange|p2a: Salamence|Salamence-Mega, L50, F
+|-mega|p2a: Salamence|Salamence|Salamencite
+|move|p1a: Sneasler|Rock Tomb|p2a: Salamence|[miss]
+|-miss|p1a: Sneasler|p2a: Salamence
+|move|p2b: Excadrill|High Horsepower|p1a: Sneasler|[miss]
+|-miss|p2b: Excadrill|p1a: Sneasler
+|move|p2a: Salamence|Hyper Voice|p1b: Rillaboom|[spread] p1a,p1b
+|-supereffective|p1a: Sneasler|1
+|-supereffective|p1b: Rillaboom|1
+|-damage|p1a: Sneasler|0 fnt
+|-damage|p1b: Rillaboom|10/100
+|faint|p1a: Sneasler
+|
+|-weather|Sandstorm|[upkeep]
+|-damage|p2a: Salamence|94/100|[from] Sandstorm
+|-damage|p1b: Rillaboom|4/100|[from] Sandstorm
+|-heal|p1b: Rillaboom|10/100|[from] Grassy Terrain
+|upkeep
+|
+|t:|1789701416
+|switch|p1a: Salamence|Salamence, L50, F|94/100
+|-ability|p1a: Salamence|Intimidate|boost
+|-unboost|p2a: Salamence|atk|1
+|-unboost|p2b: Excadrill|atk|1
+|turn|3
+|
+|t:|1789701447
+|switch|p2a: Tyranitar|Tyranitar, L50, M|100/100
+|detailschange|p1a: Salamence|Salamence-Mega, L50, F
+|-mega|p1a: Salamence|Salamence|Salamencite
+|move|p1b: Rillaboom|Fake Out|p2a: Tyranitar
+|-resisted|p2a: Tyranitar|1
+|-damage|p2a: Tyranitar|94/100
+|move|p2b: Excadrill|Rock Slide|p1b: Rillaboom|[spread] p1a,p1b
+|-supereffective|p1a: Salamence|1
+|-damage|p1a: Salamence|78/100
+|-damage|p1b: Rillaboom|0 fnt
+|faint|p1b: Rillaboom
+|move|p1a: Salamence|Tailwind|p1a: Salamence
+|-sidestart|p1: AI damage calc|move: Tailwind
+|
+|-weather|Sandstorm|[upkeep]
+|-damage|p1a: Salamence|72/100|[from] Sandstorm
+|-heal|p2a: Tyranitar|100/100|[from] Grassy Terrain
+|upkeep
+|inactive|Battle timer is ON: inactive players will automatically lose when time's up. (requested by AI damage calc)
+|
+|t:|1789701451
+|switch|p1b: Gholdengo|Gholdengo, L50|100/100
+|turn|4
+|inactive|killerjc123 has 30 seconds left.
+|
+|t:|1789701482
+|move|p2a: Tyranitar|Protect|p2a: Tyranitar
+|-singleturn|p2a: Tyranitar|Protect
+|move|p1a: Salamence|Hyper Voice|p2b: Excadrill|[spread] p2b
+|-activate|p2a: Tyranitar|move: Protect
+|-resisted|p2b: Excadrill|1
+|-damage|p2b: Excadrill|75/100
+|move|p2b: Excadrill|High Horsepower|p1b: Gholdengo
+|-supereffective|p1b: Gholdengo|1
+|-damage|p1b: Gholdengo|40/100
+|move|p1b: Gholdengo|Make It Rain|p2b: Excadrill|[spread] p2b
+|-activate|p2a: Tyranitar|move: Protect
+|-resisted|p2b: Excadrill|1
+|-crit|p2b: Excadrill
+|-damage|p2b: Excadrill|15/100
+|-unboost|p1b: Gholdengo|spa|2
+|-damage|p1b: Gholdengo|30/100|[from] item: Life Orb
+|
+|-weather|Sandstorm|[upkeep]
+|-damage|p1a: Salamence|66/100|[from] Sandstorm
+|-heal|p2b: Excadrill|21/100|[from] Grassy Terrain
+|-heal|p1b: Gholdengo|36/100|[from] Grassy Terrain
+|upkeep
+|turn|5
+|inactive|killerjc123 has 30 seconds left.
+|
+|t:|1789701511
+|move|p1a: Salamence|Hyper Voice|p2b: Excadrill|[spread] p2a,p2b
+|-resisted|p2a: Tyranitar|1
+|-resisted|p2b: Excadrill|1
+|-damage|p2a: Tyranitar|90/100
+|-damage|p2b: Excadrill|0 fnt
+|faint|p2b: Excadrill
+|move|p1b: Gholdengo|Make It Rain|p2a: Tyranitar
+|-supereffective|p2a: Tyranitar|1
+|-damage|p2a: Tyranitar|41/100
+|-unboost|p1b: Gholdengo|spa|2
+|-damage|p1b: Gholdengo|26/100|[from] item: Life Orb
+|move|p2a: Tyranitar|Rock Slide|p1b: Gholdengo|[spread] p1a,p1b
+|-supereffective|p1a: Salamence|1
+|-resisted|p1b: Gholdengo|1
+|-damage|p1a: Salamence|17/100
+|-damage|p1b: Gholdengo|10/100
+|
+|-weather|none
+|-heal|p1b: Gholdengo|16/100|[from] Grassy Terrain
+|-heal|p2a: Tyranitar|47/100|[from] Grassy Terrain
+|upkeep
+|
+|t:|1789701527
+|switch|p2b: Salamence|Salamence-Mega, L50, F|94/100
+|turn|6
+|
+|t:|1789701549
+|move|p1a: Salamence|Protect|p1a: Salamence
+|-singleturn|p1a: Salamence|Protect
+|move|p2b: Salamence|Protect|p2b: Salamence
+|-singleturn|p2b: Salamence|Protect
+|move|p1b: Gholdengo|Nasty Plot|p1b: Gholdengo
+|-boost|p1b: Gholdengo|spa|2
+|move|p2a: Tyranitar|Knock Off|p1b: Gholdengo
+|-supereffective|p1b: Gholdengo|1
+|-damage|p1b: Gholdengo|0 fnt
+|-enditem|p1b: Gholdengo|Life Orb|[from] move: Knock Off|[of] p2a: Tyranitar
+|faint|p1b: Gholdengo
+|
+|-heal|p2a: Tyranitar|53/100|[from] Grassy Terrain
+|-sideend|p1: AI damage calc|move: Tailwind
+|-fieldend|move: Grassy Terrain
+|upkeep
+|turn|7
+|
+|t:|1789701568
+|move|p1a: Salamence|Draco Meteor|p2b: Salamence
+|-supereffective|p2b: Salamence|1
+|-damage|p2b: Salamence|0 fnt
+|-unboost|p1a: Salamence|spa|2
+|faint|p2b: Salamence
+|move|p2a: Tyranitar|Knock Off|p1a: Salamence
+|-damage|p1a: Salamence|0 fnt
+|faint|p1a: Salamence
+|
+|win|killerjc123
+||AI damage calc is ready for game 2.
+||killerjc123 is ready for game 2.
+|uhtml|next|Next: <a href="/battle-gen9championsvgc2026regmcbo3-2683342314"><strong>Game 2 of 3</strong></a>

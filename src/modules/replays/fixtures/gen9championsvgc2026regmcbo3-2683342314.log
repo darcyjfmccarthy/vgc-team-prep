@@ -1,0 +1,85 @@
+|j|☆AI damage calc
+|j|☆killerjc123
+|html|<table width="100%"><tr><td align="left">AI damage calc</td><td align="right">killerjc123</tr><tr><td align="left"><i class="fa fa-circle-o"></i> <i class="fa fa-circle-o"></i> </td><td align="right"><i class="fa fa-circle-o"></i> <i class="fa fa-circle"></i> </tr></table>
+|uhtml|bestof|<h2><strong>Game 2</strong> of <a href="/game-bestof3-gen9championsvgc2026regmcbo3-2683340563">a best-of-3</a></h2>
+|t:|1789701577
+|gametype|doubles
+|player|p1|AI damage calc|1|1123
+|player|p2|killerjc123|169|1168
+|gen|9
+|tier|[Gen 9 Champions] VGC 2026 Reg M-C (Bo3)
+|rated|
+|rule|Species Clause: Limit one of each Pokémon
+|rule|Item Clause: Limit 1 of each item
+|clearpoke
+|poke|p1|Gholdengo, L50|
+|poke|p1|Sneasler, L50, M|
+|poke|p1|Raichu, L50, F|
+|poke|p1|Arcanine-Hisui, L50, M|
+|poke|p1|Rillaboom, L50, F|
+|poke|p1|Salamence, L50, M|
+|poke|p2|Salamence, L50, F|
+|poke|p2|Tyranitar, L50, F|
+|poke|p2|Excadrill, L50, F|
+|poke|p2|Sneasler, L50, F|
+|poke|p2|Indeedee, L50, M|
+|poke|p2|Milotic, L50, F|
+|teampreview|4
+|showteam|p1|Gholdengo||LifeOrb|GoodasGold|Protect,MakeItRain,ShadowBall,NastyPlot|Timid|||||50|]Sneasler||GrassySeed|Unburden|CloseCombat,DireClaw,RockTomb,FakeOut|Adamant||M|||50|]Raichu||RaichuniteY|LightningRod|FakeOut,Protect,ZapCannon,FocusBlast|Timid||F|||50|]Arcanine-Hisui||FocusSash|RockHead|FlareBlitz,HeadSmash,ExtremeSpeed,Protect|Jolly||M|||50|]Rillaboom||MiracleSeed|GrassySurge|FakeOut,GrassyGlide,HighHorsepower,Uturn|Adamant||F|||50|]Salamence||Salamencite|Intimidate|HyperVoice,DracoMeteor,Tailwind,Protect|Timid||M|||50|
+|showteam|p2|Salamence||Salamencite|Intimidate|HyperVoice,DracoMeteor,Protect,Flamethrower|Modest||F|||50|]Tyranitar||Tyranitarite|SandStream|Protect,RockSlide,LowKick,KnockOff|Adamant||F|||50|]Excadrill||FocusSash|SandRush|HighHorsepower,RockSlide,Protect,IronHead|Jolly||F|||50|]Sneasler||PsychicSeed|Unburden|CloseCombat,ThroatChop,DireClaw,FakeOut|Jolly||F|||50|]Indeedee||ChoiceScarf|PsychicSurge|Trick,TerrainPulse,ExpandingForce,MysticalFire|Modest||M|||50|]Milotic||Leftovers|Competitive|Scald,LifeDew,IcyWind,Protect|Modest||F|||50|
+|inactive|Battle timer is ON: inactive players will automatically lose when time's up. (requested by killerjc123)
+|
+|t:|1789701627
+|teamsize|p1|4
+|teamsize|p2|4
+|start
+|switch|p1a: Salamence|Salamence, L50, M|100/100
+|switch|p1b: Rillaboom|Rillaboom, L50, F|100/100
+|switch|p2a: Salamence|Salamence, L50, F|100/100
+|switch|p2b: Indeedee|Indeedee, L50, M|100/100
+|-fieldstart|move: Psychic Terrain|[from] ability: Psychic Surge|[of] p2b: Indeedee
+|-ability|p1a: Salamence|Intimidate|boost
+|-unboost|p2a: Salamence|atk|1
+|-unboost|p2b: Indeedee|atk|1
+|-ability|p2a: Salamence|Intimidate|boost
+|-unboost|p1a: Salamence|atk|1
+|-unboost|p1b: Rillaboom|atk|1
+|-fieldstart|move: Grassy Terrain|[from] ability: Grassy Surge|[of] p1b: Rillaboom
+|turn|1
+|inactive|killerjc123 has 30 seconds left.
+|
+|t:|1789701661
+|detailschange|p1a: Salamence|Salamence-Mega, L50, M
+|-mega|p1a: Salamence|Salamence|Salamencite
+|detailschange|p2a: Salamence|Salamence-Mega, L50, F
+|-mega|p2a: Salamence|Salamence|Salamencite
+|move|p2b: Indeedee|Mystical Fire|p1b: Rillaboom
+|-supereffective|p1b: Rillaboom|1
+|-damage|p1b: Rillaboom|48/100
+|-unboost|p1b: Rillaboom|spa|1
+|move|p1a: Salamence|Draco Meteor|p2a: Salamence
+|-supereffective|p2a: Salamence|1
+|-damage|p2a: Salamence|0 fnt
+|-unboost|p1a: Salamence|spa|2
+|faint|p2a: Salamence
+|move|p1b: Rillaboom|U-turn|p2b: Indeedee
+|-supereffective|p2b: Indeedee|1
+|-damage|p2b: Indeedee|34/100
+|
+|t:|1789701669
+|switch|p1b: Sneasler|Sneasler, L50, M|100/100|[from] U-turn
+|-enditem|p1b: Sneasler|Grassy Seed
+|-boost|p1b: Sneasler|def|1|[from] item: Grassy Seed
+|
+|-heal|p2b: Indeedee|40/100|[from] Grassy Terrain
+|upkeep
+|-message|killerjc123 forfeited.
+|
+|win|AI damage calc
+|l|☆killerjc123
+|player|p2|
+|inactive|AI damage calc has 30 seconds to confirm battle start!
+|inactive|killerjc123 has 30 seconds to confirm battle start!
+||killerjc123 is ready for game 3.
+||AI damage calc is ready for game 3.
+|uhtml|next|Next: <a href="/battle-gen9championsvgc2026regmcbo3-2683342984"><strong>Game 3 of 3</strong></a>

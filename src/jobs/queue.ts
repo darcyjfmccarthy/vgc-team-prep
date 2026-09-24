@@ -1,25 +1,30 @@
 import { v7 as uuidv7 } from "uuid";
 import { db } from "@/db/client";
+import type { Kysely, Transaction } from "kysely";
+import type { Database } from "@/db/types";
 
-export async function enqueueJob(input: {
-  kind: string;
-  userId?: string;
-  subjectType: string;
-  subjectId: string;
-  idempotencyKey: string;
-  correlationId: string;
-  maxAttempts?: number;
-}) {
-  const existing = await db
+export async function enqueueJob(
+  input: {
+    kind: string;
+    userId?: string;
+    subjectType: string;
+    subjectId: string;
+    idempotencyKey: string;
+    correlationId: string;
+    maxAttempts?: number;
+  },
+  executor: Kysely<Database> | Transaction<Database> = db,
+) {
+  const existing = await executor
     .selectFrom("jobs")
     .select("id")
     .where("kind", "=", input.kind)
     .where("idempotency_key", "=", input.idempotencyKey)
-    .where("user_id", "is", input.userId ?? null)
+    .where("user_id", input.userId ? "=" : "is", input.userId ?? null)
     .executeTakeFirst();
   if (existing) return existing.id;
   const id = uuidv7();
-  await db
+  await executor
     .insertInto("jobs")
     .values({
       id,
@@ -44,10 +49,10 @@ export async function enqueueJob(input: {
   return id;
 }
 
-export async function claimJob(workerId: string) {
+export async function claimJob(workerId: string, userId?: string) {
   return db.transaction().execute(async (trx) => {
     const now = new Date();
-    const job = await trx
+    let query = trx
       .selectFrom("jobs")
       .selectAll()
       .where((eb) =>
@@ -65,8 +70,9 @@ export async function claimJob(workerId: string) {
       .orderBy("priority", "desc")
       .orderBy("available_at")
       .forUpdate()
-      .skipLocked()
-      .executeTakeFirst();
+      .skipLocked();
+    if (userId) query = query.where("user_id", "=", userId);
+    const job = await query.executeTakeFirst();
     if (!job) return null;
     const attemptCount = job.attempt_count + 1;
     await trx

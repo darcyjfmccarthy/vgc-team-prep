@@ -78,7 +78,7 @@ export function TeamWorkspace({
             </label>
             <Link
               className="button"
-              href={`/teams/${team.id}/replays${suffix}`}
+              href={`/teams/${team.id}/replays${suffix}${suffix ? "&" : "?"}import=1`}
             >
               Add replays
             </Link>

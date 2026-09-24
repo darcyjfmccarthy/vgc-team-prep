@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import "@/styles/replay-analysis.css";
 
 export const metadata: Metadata = {
   title: "VGC Team Prep",

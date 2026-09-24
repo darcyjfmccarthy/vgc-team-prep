@@ -21,6 +21,8 @@ This directory translates [`REQUIREMENTS.md`](../../REQUIREMENTS.md) into an imp
 
 ## Status vocabulary
 
+The implemented replay workflow and supplied set are documented in [12-replay-implementation.md](12-replay-implementation.md).
+
 - **Specified:** sufficiently defined to implement.
 - **Decision required:** implementation is blocked on a product or technical choice listed below.
 - **Deferred:** intentionally outside the P0 release.

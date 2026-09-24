@@ -11,8 +11,8 @@ Priority notation:
 - **FR-1.1 — P0:** A user shall be able to register, log in, log out, and reset their password. ✅
 - **FR-1.2 — P0:** User data shall be associated with an account and accessible across devices. ✅
 - **FR-1.3 — P0:** Passwords shall never be stored in plaintext and shall be processed according to the controls in NFR-4. ✅
-- **FR-1.4 — P0:** A user shall be able to provide the relevant Pokémon Showdown username when importing replays. A Showdown username is an unverified replay-ingestion parameter, not an identity claimed or reserved by an application account.
-- **FR-1.5 — P0:** The user shall be able to select which player in a replay represents them when this cannot be inferred reliably.
+- **FR-1.4 — P0:** A user shall be able to provide the relevant Pokémon Showdown username when importing replays. A Showdown username is an unverified replay-ingestion parameter, not an identity claimed or reserved by an application account. ✅
+- **FR-1.5 — P0:** The user shall be able to select which player in a replay represents them when this cannot be inferred reliably. ✅
 - **FR-1.6 — P1:** Support third-party authentication, such as Google.
 - **FR-1.7 — P1:** Allow users to permanently delete their account and associated data.
 
@@ -28,28 +28,28 @@ Priority notation:
   - A persistent **team identity**, such as “Sydney team.”
   - Immutable **team versions**, such as “v7 before changing Flutter Mane's bulk.”
 - **FR-2.6 — P0:** Editing a competitively meaningful property shall create, or explicitly update, a team version. ✅
-- **FR-2.7 — P0:** Historical replays shall remain associated with the exact team version used in those games.
+- **FR-2.7 — P0:** Historical replays shall remain associated with the exact team version used in those games. ✅
 - **FR-2.10 — P1:** Users shall be able to organize teams into folders, events, seasons, or preparation projects.
 - **FR-2.11 — P1:** Users shall be able to export a team in Showdown format and generate a shareable Poképaste-compatible representation.
 - **FR-2.12 — P1:** Support teams with incomplete or exploratory slots without corrupting analytics.
 
 ## FR-3. Replay ingestion
 
-- **FR-3.1 — P0:** Users shall be able to add one or more Pokémon Showdown replay URLs.
-- **FR-3.2 — P0:** The system shall support bulk paste or import of replay URLs.
-- **FR-3.3 — P0:** A replay shall be associated with a team and, wherever possible, its exact team version.
-- **FR-3.4 — P0:** The system shall retrieve and retain sufficient source data to reparse a replay later.
-- **FR-3.5 — P0:** Duplicate replay imports shall be detected and shall not double-count statistics.
-- **FR-3.6 — P0:** Invalid, private, deleted, unsupported, or incomplete replays shall produce actionable errors.
+- **FR-3.1 — P0:** Users shall be able to add one or more Pokémon Showdown replay URLs. ✅
+- **FR-3.2 — P0:** The system shall support bulk paste or import of replay URLs. ✅
+- **FR-3.3 — P0:** A replay shall be associated with a team and, wherever possible, its exact team version. ✅
+- **FR-3.4 — P0:** The system shall retrieve and retain sufficient source data to reparse a replay later. ✅
+- **FR-3.5 — P0:** Duplicate replay imports shall be detected and shall not double-count statistics. ✅
+- **FR-3.6 — P0:** Invalid, private, deleted, unsupported, or incomplete replays shall produce actionable errors. ✅
 - **FR-3.7 — P0:** Users shall be able to correct replay ownership, team association, result, or other incorrectly inferred metadata.
-- **FR-3.8 — P0:** The system shall detect separate replay URLs belonging to the same best-of-three using the identifiers encoded in the URLs or replay metadata, group them automatically, and display both the individual games and aggregate set result.
+- **FR-3.8 — P0:** The system shall detect separate replay URLs belonging to the same best-of-three using the identifiers encoded in the URLs or replay metadata, group them automatically, and display both the individual games and aggregate set result. ✅
 - **FR-3.9 — P1:** A browser extension or Showdown-side workflow shall allow one-click or automatic replay capture.
 - **FR-3.10 — P1:** Support CSV or structured imports from tools such as PASRS where technically feasible.
 - **FR-3.11 — P1:** Support manual match entries for Pokémon Champions games or unavailable replays, clearly marking the data as user-entered.
 
 ## FR-4. Replay parsing and battle representation
 
-- **FR-4.1 — P0:** For every supported replay, the parser shall identify:
+- **FR-4.1 — P0:** For every supported replay, the parser shall identify: ✅
   - Format and timestamp.
   - Players and result.
   - Both team previews where exposed.
@@ -57,27 +57,27 @@ Priority notation:
   - Moves used.
   - Switches and fainting.
   - Mega Evolution usage and resulting form where applicable.
-- **FR-4.2 — P0:** The parser shall preserve unknown information as unknown rather than inventing a value.
-- **FR-4.3 — P0:** Users shall be able to open the original replay and inspect the parsed record.
-- **FR-4.4 — P0:** Parser output shall include parser version and import status.
-- **FR-4.5 — P0:** Previously imported replays shall be reprocessable after parser improvements without losing user notes.
+- **FR-4.2 — P0:** The parser shall preserve unknown information as unknown rather than inventing a value. ✅
+- **FR-4.3 — P0:** Users shall be able to open the original replay and inspect the parsed record. ✅
+- **FR-4.4 — P0:** Parser output shall include parser version and import status. ✅
+- **FR-4.5 — P0:** Previously imported replays shall be reprocessable after parser improvements without losing user notes. ✅
 - **FR-4.6 — P1:** Parse additional revealed information such as items, abilities, speed order, damage events, status, weather, terrain, and targeting.
-- **FR-4.7 — P1:** Support mechanics with imperfect observability, including Illusion, without presenting uncertain conclusions as facts.
+- **FR-4.7 — P1:** Support mechanics with imperfect observability, including Illusion, without presenting uncertain conclusions as facts. ✅
 - **FR-4.8 — P1:** Detect likely open-team-sheet versus closed-team-sheet games where possible, while allowing manual correction.
 
 ## FR-5. Games, sets, and sessions
 
-- **FR-5.1 — P0:** A replay shall represent a game, while automatically associated games shall also be represented as a best-of-three set.
-- **FR-5.3 — P0:** Set-level results shall not treat each game as an independent match.
-- **FR-5.4 — P0:** Users shall be able to record game-level and set-level notes.
+- **FR-5.1 — P0:** A replay shall represent a game, while automatically associated games shall also be represented as a best-of-three set. ✅
+- **FR-5.3 — P0:** Set-level results shall not treat each game as an independent match. ✅
+- **FR-5.4 — P0:** Users shall be able to record game-level and set-level notes. ✅
 - **FR-5.5 — P2:** Users shall be able to group games into ladder sessions, testing blocks, tournaments, or practice sets.
-- **FR-5.6 — P0:** Store available context including ladder rating, opponent, open- or closed-team-sheet status, and best-of-one or best-of-three format.
+- **FR-5.6 — P0:** Store available context including ladder rating, opponent, open- or closed-team-sheet status, and best-of-one or best-of-three format. ✅
 
 ## FR-6. Personal performance analytics
 
-- **FR-6.1 — P0:** Display games played, wins, losses, and win rate for each team and team version.
-- **FR-6.2 — P0:** Display set-level records separately from game-level records.
-- **FR-6.3 — P0:** For each Pokémon on the user's team, report:
+- **FR-6.1 — P0:** Display games played, wins, losses, and win rate for each team and team version. ✅
+- **FR-6.2 — P0:** Display set-level records separately from game-level records. ✅
+- **FR-6.3 — P0:** For each Pokémon on the user's team, report: ✅
   - Selection or bring rate.
   - Lead rate.
   - Back rate.
@@ -85,19 +85,19 @@ Priority notation:
   - Win rate when led.
   - Mega Evolution usage where applicable.
   - Move usage.
-- **FR-6.4 — P0:** For opposing Pokémon, report:
+- **FR-6.4 — P0:** For opposing Pokémon, report: ✅
   - Team-preview frequency.
   - Attendance or bring rate.
   - Lead frequency.
   - Wins, losses, and win rate.
   - Sample size.
-- **FR-6.5 — P0:** Report lead-pair, four-Pokémon selection, and common-partner statistics.
-- **FR-6.6 — P0:** Every percentage shall expose its underlying numerator and denominator.
-- **FR-6.7 — P0:** Analytics shall be filterable by team version, date range, format or ruleset, result, opposing Pokémon, and best-of-one or best-of-three format.
+- **FR-6.5 — P0:** Report lead-pair, four-Pokémon selection, and common-partner statistics. ✅
+- **FR-6.6 — P0:** Every percentage shall expose its underlying numerator and denominator. ✅
+- **FR-6.7 — P0:** Analytics shall be filterable by team version, date range, format or ruleset, result, opposing Pokémon, and best-of-one or best-of-three format. ✅
 - **FR-6.8 — P1:** Add filters for Showdown username, ladder, rating range, event, tag, open- or closed-team-sheet status, and opponent.
 - **FR-6.9 — P1:** Show trends over time, including rating, win rate, matchup performance, and team changes.
 - **FR-6.10 — P1:** Compare two team versions and show changes in performance and usage.
-- **FR-6.11 — P1:** Avoid presenting small samples as strong conclusions; show warnings or uncertainty intervals.
+- **FR-6.11 — P1:** Avoid presenting small samples as strong conclusions; show warnings or uncertainty intervals. ✅
 - **FR-6.12 — P1:** Allow drill-down from every aggregate statistic to the contributing games.
 - **FR-6.13 — P2:** Support user-defined metrics, saved queries, and custom dashboards.
 

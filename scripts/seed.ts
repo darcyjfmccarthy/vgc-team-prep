@@ -11,6 +11,13 @@ import {
 } from "../src/modules/teams/service";
 import { listNotes, saveNote } from "../src/modules/notes/service";
 import { readFile } from "node:fs/promises";
+import { seedReplayCatalog } from "./seed-replay-catalog";
+import { PARSER_VERSION } from "../src/modules/replays/parser";
+import {
+  listReplayRecords,
+  processReplay,
+  submitReplays,
+} from "../src/modules/replays/service";
 
 const namespace = "3f6d4f08-553c-4b9f-9972-dff1caf16bc9";
 const stable = (name: string) => uuidv5(name, namespace);
@@ -186,6 +193,7 @@ async function ensureCatalog(): Promise<void> {
 
 async function main(): Promise<void> {
   await ensureCatalog();
+  await seedReplayCatalog();
   const users = [];
   for (const [email, displayName] of [
     ["player-one@example.test", "Player One"],
@@ -217,7 +225,7 @@ async function main(): Promise<void> {
     }
     users.push(user);
   }
-  const manifest = await readFile("teams.txt", "utf8");
+  const manifest = `https://pokepast.es/6bbca2da7c6e2365\n${await readFile("teams.txt", "utf8")}`;
   for (const line of manifest
     .split(/\r?\n/)
     .map((value) => value.trim())
@@ -229,7 +237,7 @@ async function main(): Promise<void> {
         title: detail.title,
         description: "Seeded versioned team",
         status: "testing",
-        tags: ["seeded", "regulation m-b"],
+        tags: ["seeded", detail.ruleset_slug],
         expectedRevision: detail.team_revision,
       });
     if (!(await listNotes(users[0]!.id, "team", playerOneTeam.teamId)).length)
@@ -241,7 +249,7 @@ async function main(): Promise<void> {
     if (
       (await listTeamVersions(users[0]!.id, playerOneTeam.teamId)).length ===
         1 &&
-      detail?.source_text
+      detail?.source_text?.includes("Froslassite")
     )
       await saveTeamRevision(users[0]!.id, playerOneTeam.teamId, {
         kind: "showdown_text",
@@ -259,6 +267,37 @@ async function main(): Promise<void> {
     );
     if (playerTwoDetail?.status !== "archived")
       await setTeamArchived(users[1]!.id, playerTwoTeam.teamId, true);
+    if (line === "https://pokepast.es/58cbd5a41861cdc2") {
+      const before = await listReplayRecords(
+        users[0]!.id,
+        playerOneTeam.teamId,
+      );
+      if (!before.length)
+        await submitReplays(users[0]!.id, {
+          teamId: playerOneTeam.teamId,
+          versionId: playerOneTeam.versionId,
+          urls: await readFile("games.txt", "utf8"),
+        });
+      for (const game of await listReplayRecords(
+        users[0]!.id,
+        playerOneTeam.teamId,
+      )) {
+        if (
+          game.status !== "succeeded" ||
+          game.parser_version !== PARSER_VERSION
+        ) {
+          await processReplay(users[0]!.id, game.id);
+          await db
+            .updateTable("jobs")
+            .set({ status: "succeeded", completed_at: new Date() })
+            .where("user_id", "=", users[0]!.id)
+            .where("subject_id", "=", game.id)
+            .where("kind", "=", "replay.import")
+            .where("status", "=", "available")
+            .execute();
+        }
+      }
+    }
   }
   console.log(
     "Seeded player-one@example.test and player-two@example.test / correct-horse-battery-staple",
